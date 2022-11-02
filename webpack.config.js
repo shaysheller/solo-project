@@ -9,7 +9,7 @@ module.exports = {
     entry: './src/index.js',
 
     output: {
-        path: path.join(__dirname, '/dist'),
+        path: path.join(__dirname, './dist'),
         filename: 'bundle.js'
 
     },
@@ -18,10 +18,24 @@ module.exports = {
 
     devServer: {
         static: {
-            directory: path.join(__dirname, './build'),
+            directory: path.join(__dirname, './dist'),
             publicPath: '/'
+        },
+
+        hot: true,
+        proxy: {
+            '/api': {
+              target: 'http://localhost:8080',
+              router: () => 'http://localhost:1234/'
+            }
         }
+
+
+
+
+
     },
+
     devtool: 'inline-source-map',
 
     module: {
@@ -35,7 +49,17 @@ module.exports = {
                         presets: ['@babel/preset-env', '@babel/preset-react']
                     }
                 }
-            }
+            },
+            
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+
+            {
+                test: /\.html$/,
+                use: ['html-loader']
+            },
         ]
     },
 
