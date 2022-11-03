@@ -92,7 +92,11 @@ render() {
     return (
         <div id="app">
             <p class="week">WEEK {this.state.week}</p>
+            
+            <div class="flex">
             {result}
+
+            </div>
 
             <form onSubmit={this.handleSubmit}>
                 <label>WEEK SELECT</label>
