@@ -9,8 +9,20 @@ class FirstLevel extends Component {
 
 
     render() {
+        const {home, away, hScore, aScore} = this.props;
+
         return (
-            <div class="first">{this.props.game}</div>
+            <div class="first">
+                <div class='home'>
+                    {home} <br></br> {hScore}
+                </div>
+                <div>
+                    VS.
+                </div>
+                <div class='away'>
+                    {away} <br></br> {aScore}
+                </div>
+            </div>
         )
     }
 }

@@ -2,17 +2,24 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-const apiController = require('./controllers/apiController')
+
+const databaseUpdateRouter = require('./routes/database');
+const apiRouter = require('./routes/api.js');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
-app.get('/api', apiController.grabData, (req, res) => {
 
-   return res.status(200).json(res.locals.obj);
 
-})
+app.use('/api', apiRouter);
+app.use('/database', databaseUpdateRouter);
+
+
+
+
+
+
 
 
 
